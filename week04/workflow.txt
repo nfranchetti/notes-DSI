@@ -1,0 +1,5 @@
+1. Do a Logit
+2. Look at .score
+3. Look at confusion matrix
+4. Look at classification report
+5. If it's fishy, look at AUC-ROC
