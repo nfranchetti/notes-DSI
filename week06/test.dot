@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label=<miles &le; 108000.0<br/>mse = 22375555.5556<br/>samples = 9<br/>value = 6366.6667>, fillcolor="#e5813966"] ;
+1 [label=<year &le; 2009.5<br/>mse = 4671875.0<br/>samples = 4<br/>value = 11375.0>, fillcolor="#e58139ca"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label=<miles &le; 62500.0<br/>mse = 62500.0<br/>samples = 2<br/>value = 9250.0>, fillcolor="#e58139a0"] ;
+1 -> 2 ;
+3 [label=<mse = 0.0<br/>samples = 1<br/>value = 9000.0>, fillcolor="#e581399b"] ;
+2 -> 3 ;
+4 [label=<mse = 0.0<br/>samples = 1<br/>value = 9500.0>, fillcolor="#e58139a5"] ;
+2 -> 4 ;
+5 [label=<miles &le; 51750.0<br/>mse = 250000.0<br/>samples = 2<br/>value = 13500.0>, fillcolor="#e58139f5"] ;
+1 -> 5 ;
+6 [label=<mse = 0.0<br/>samples = 1<br/>value = 14000.0>, fillcolor="#e58139ff"] ;
+5 -> 6 ;
+7 [label=<mse = 0.0<br/>samples = 1<br/>value = 13000.0>, fillcolor="#e58139eb"] ;
+5 -> 7 ;
+8 [label=<year &le; 2000.0<br/>mse = 418400.0<br/>samples = 5<br/>value = 2360.0>, fillcolor="#e5813915"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label=<mse = 0.0<br/>samples = 1<br/>value = 1300.0>, fillcolor="#e5813900"] ;
+8 -> 9 ;
+10 [label=<miles &le; 183500.0<br/>mse = 171875.0<br/>samples = 4<br/>value = 2625.0>, fillcolor="#e581391b"] ;
+8 -> 10 ;
+11 [label=<mse = 0.0<br/>samples = 2<br/>value = 3000.0>, fillcolor="#e5813922"] ;
+10 -> 11 ;
+12 [label=<year &le; 2003.5<br/>mse = 62500.0<br/>samples = 2<br/>value = 2250.0>, fillcolor="#e5813913"] ;
+10 -> 12 ;
+13 [label=<mse = 0.0<br/>samples = 1<br/>value = 2500.0>, fillcolor="#e5813918"] ;
+12 -> 13 ;
+14 [label=<mse = 0.0<br/>samples = 1<br/>value = 2000.0>, fillcolor="#e581390e"] ;
+12 -> 14 ;
+}
