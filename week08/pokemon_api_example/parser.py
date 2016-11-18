@@ -42,7 +42,7 @@ def return_pokemon_information(pokemon_data, gender_data):
 	base_stats = stats_list(extract_base(pokemon_data, 'stats'))
 	type_data = types_list(extract_base(pokemon_data, 'types'))
 	gender_dictionary = all_pokemon_gender(extract_base(gender_data, 'pokemon_species_details'))
-	gender_likelihood = gender_data[str(id_num)['rate']]
+	gender_likelihood = gender_dictionary[str(id_num)]['rate']
 	return {
 		'base_exp': base_experience,
 		'height': height,
@@ -55,13 +55,13 @@ def return_pokemon_information(pokemon_data, gender_data):
 	}
 
 
-print 'Bulbasaur\'s base experience is %s' % base_experience
-print 'Its height is %s' % height
-print 'Its weight is %s' % weight
-for item in base_stats:
-	print 'Bulby\'s %s starts at %s' % (item[0], item[1])
+# print 'Bulbasaur\'s base experience is %s' % base_experience
+# print 'Its height is %s' % height
+# print 'Its weight is %s' % weight
+# for item in base_stats:
+# 	print 'Bulby\'s %s starts at %s' % (item[0], item[1])
 
-for item in types_list(extract_base(json_data, 'types')):
-	print 'Bulby\'s type %s is %s' % (item[0], item[1])
+# for item in types_list(extract_base(json_data, 'types')):
+# 	print 'Bulby\'s type %s is %s' % (item[0], item[1])
 
-print 'Bulbasaur has a %s chance of being female' % gender_dictionary['1']['rate']
+# print 'Bulbasaur has a %s chance of being female' % gender_dictionary['1']['rate']
