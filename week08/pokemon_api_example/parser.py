@@ -33,11 +33,27 @@ def all_pokemon_gender(list_of_data):
 		data_dictionary[id_number] = {'name': pokemon_name, 'rate': rate}
 	return data_dictionary
 
-base_experience = extract_base(json_data, 'base_experience')
-height = extract_base(json_data, 'height')
-weight = extract_base(json_data, 'weight')
-base_stats = stats_list(extract_base(json_data, 'stats'))
-gender_dictionary = all_pokemon_gender(extract_base(gender_data, 'pokemon_species_details'))
+def return_pokemon_information(pokemon_data, gender_data):
+	base_experience = extract_base(pokemon_data, 'base_experience')
+	height = extract_base(pokemon_data, 'height')
+	weight = extract_base(pokemon_data, 'weight')
+	name = extract_base(pokemon_data, 'name')
+	id_num = extract_base(pokemon_data, 'id')
+	base_stats = stats_list(extract_base(pokemon_data, 'stats'))
+	type_data = types_list(extract_base(pokemon_data, 'types'))
+	gender_dictionary = all_pokemon_gender(extract_base(gender_data, 'pokemon_species_details'))
+	gender_likelihood = gender_data[str(id_num)['rate']]
+	return {
+		'base_exp': base_experience,
+		'height': height,
+		'weight': weight,
+		'name': name,
+		'id_num': id_num,
+		'chance_female': gender_likelihood,
+		'base_stats_list': base_stats,
+		'type_list': type_data
+	}
+
 
 print 'Bulbasaur\'s base experience is %s' % base_experience
 print 'Its height is %s' % height
