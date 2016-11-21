@@ -1,0 +1,8 @@
+Tools
+
+Hadoop: Makes MR easier
+	HDFS -> Hadoop FS
+MRJob: Wrapper for Hadoop in Python
+	Makes Hadoop Easier
+Hive: Wrapper for Hadoop in SQL syntax
+	Makes Hadoop Easier
