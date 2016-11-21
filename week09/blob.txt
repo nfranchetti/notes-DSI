@@ -1,0 +1,17 @@
+MapReduce is a programming model for large-scale distributed data processing.
+It is inspired by the map function and the reduce function of the functional
+programming languages such as Lisp, Haskell, or Python. One of the most
+important features of MapReduce is that it allows us to hide the low-level
+implementation such as message passing or synchronization from users and
+allows to split a problem into many partitions. This is a great way to make
+trivial parallelization of data processing without any need for
+communication between the partitions.
+MapReduce became main stream because of Apache Hadoop, which is an open
+source framework that was derived from Google's MapReduce paper.
+MapReduce allows us to process massive amounts of data in a distributed
+cluster. In fact, there are many implementations of the MapReduce
+programming model. Some of them are shown in the following list. It is
+important to say that MapReduce is not an algorithm; it is just a part
+of a high-performance infrastructure that provides a lightweight
+way to run a program in a lot of parallel machines.
+               from: Practical Data Analysis, Hector Cuesta, 2013
