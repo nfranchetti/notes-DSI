@@ -1,0 +1,132 @@
+1) How many rides happened on Divvy in the entire dataset?
+chidsi1=> SELECT COUNT(*) FROM rides;
+7867600
+
+
+2) How many different bikes are there in the Divvy dataset? (Note: all bikes have a unique id "bikeid")
+chidsi1=> SELECT COUNT(DISTINCT bikeid) FROM rides;
+5658
+
+
+3) What is the most-used bike?
+chidsi1=> SELECT bikeid, COUNT(bikeid) AS num FROM rides
+GROUP BY bikeid ORDER BY num DESC;
+ bikeid | num  
+--------+------
+    872 | 2820
+
+
+4) How many rides happened by Customers (versus Dependents or Subscribers)?
+chidsi1=> SELECT usertype, COUNT(usertype) FROM rides
+GROUP BY usertype ORDER BY COUNT(usertype) DESC;
+  usertype  |  count  
+------------+---------
+ Subscriber | 5466758
+ Customer   | 2400699
+ Dependent  |     143
+
+
+5) What percentage of rides did Subscribers take (versus the raw number)?
+chidsi1=> SELECT usertype, COUNT(*) * 100.0 / (SELECT COUNT(*) FROM rides)
+AS percent FROM rides GROUP BY usertype ORDER BY percent DESC;
+  usertype  |        percent         
+------------+------------------------
+ Subscriber |    69.4844425237683665
+ Customer   |    30.5137398952666633
+ Dependent  | 0.00181758096497025777
+
+
+6) How many Divvy stations have "Lake Shore Dr" in the name?
+chidsi1=> SELECT COUNT(*) FROM stations
+WHERE station_name LIKE '%Lake Shore Dr%';
+ count 
+-------
+     6
+
+
+7) Which Divvy stations have "Lake Shore Dr" in the name?
+chidsi1=> SELECT * FROM stations
+WHERE station_name LIKE '%Lake Shore Dr%';
+ id  |          station_name          
+-----+--------------------------------
+  76 | Lake Shore Dr & Monroe St
+  99 | Lake Shore Dr & Ohio St
+ 157 | Lake Shore Dr & Wellington Ave
+ 268 | Lake Shore Dr & North Blvd
+ 334 | Lake Shore Dr & Belmont Ave
+ 329 | Lake Shore Dr & Diversey Pkwy
+
+
+8) What is the count of distinct bikes ridden by customers?
+chidsi1=> SELECT COUNT(DISTINCT bikeid) FROM rides
+WHERE usertype='Customer';
+ count 
+-------
+  5618
+
+
+9) What about by subscribers?
+chidsi1=> SELECT COUNT(DISTINCT bikeid) FROM rides
+WHERE usertype='Subscriber';
+ count 
+-------
+  5638
+
+
+10) What is the earliest date and time of a ride in this set?
+chidsi1=> SELECT starttime FROM rides ORDER BY starttime ASC LIMIT 1;
+    starttime     
+------------------
+ 06/27/2013 01:06
+
+chidsi1=> SELECT min(starttime) FROM rides;
+       min        
+------------------
+ 06/27/2013 01:06
+
+chidsi1=> SELECT min(to_timestamp(starttime, 'MM/DD/YYYY HH24:MI')) from rides;
+          min           
+------------------------
+ 2013-06-27 01:06:00+00
+
+
+11) What is the latest date and time of a ride in this set?
+chidsi1=> SELECT max(to_timestamp(stopttime, 'MM/DD/YYYY HH24:MI')) from rides;
+          max           
+------------------------
+ 2016-07-01 15:58:00+00
+
+
+12) How rides happened each year?
+chidsi1=> SELECT EXTRACT(year FROM to_timestamp(starttime, 'MM/DD/YYYY HH24:MI')) as year,
+COUNT(*) FROM rides
+GROUP BY year ORDER BY year ASC;
+ year |  count  
+------+---------
+ 2013 |  759788
+ 2014 | 2454634
+ 2015 | 3183439
+ 2016 | 1469739
+
+
+13) How many rides happened during the first 6 months and years and the last 6 months and years?
+SELECT 
+	EXTRACT(year FROM to_timestamp(starttime, 'MM/DD/YYYY HH24:MI')) as year,
+	CASE WHEN 
+		EXTRACT(month FROM to_timestamp(starttime, 'MM/DD/YYYY HH24:MI')) <=6
+		THEN 'first half'::text
+		ELSE 'second half'::text
+	END AS year_half,
+	COUNT(*)
+FROM rides
+GROUP BY year, year_half
+ORDER BY year ASC, year_half ASC;
+ year |  year_half  |  count  
+------+-------------+---------
+ 2013 | first half  |    4005
+ 2013 | second half |  755783
+ 2014 | first half  |  905699
+ 2014 | second half | 1548935
+ 2015 | first half  | 1096239
+ 2015 | second half | 2087200
+ 2016 | first half  | 1469739
